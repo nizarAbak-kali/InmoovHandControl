@@ -162,3 +162,11 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+include_directories(include ${catkin_INCLUDE_DIRS})
+
+add_executable(commander src/hand_command_pub.cpp)
+target_link_libraries(commander ${catkin_LIBRARIES})
+add_dependencies(commander ros_inmoov_hand_generate_messages_cpp)
+add_executable(listener src/hand_command_listner.cpp)
+target_link_libraries(listener ${catkin_LIBRARIES})
+add_dependencies(listener ros_inmoov_hand_generate_messages_cpp)
