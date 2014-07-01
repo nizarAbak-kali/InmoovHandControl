@@ -16,22 +16,18 @@ void controllerCallback(const ros_inmoov_hand::moov& mv)
 
 int main(int argc, char **argv)
 {
+  // node init 
+  ros::init(argc, argv, "hand");
   
-  ros::init(argc, argv, "listener");
-
+  // The node's handler  
   ros::NodeHandle n;
 
+  // subsribe to the topic "controller"   
   ros::Subscriber controller_sub = n.subscribe("controller",1000,controllerCallback);
 
-
-  ros::spin();
-  switch(finger_name){
-  case "ff":
-    // ff est l'index  a attache au 9 
-     ros::Publisher servo_pub = n.advertise<std_msgs/UInt16>("servo");
   default:
     break;
-
+    
 }
   return 0;
 }
