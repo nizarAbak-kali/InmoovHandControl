@@ -2,6 +2,7 @@
 #include <Servo.h> 
 #include "ros/ros.h"
 #include "ros_inmoov_hand/moov.h"
+#include <std_msgs/UInt16.h>
 
 String finger_name ;
 int move_finger ;
@@ -17,11 +18,19 @@ int main(int argc, char **argv)
 {
   
   ros::init(argc, argv, "listener");
+
   ros::NodeHandle n;
+
   ros::Subscriber controller_sub = n.subscribe("controller",1000,controllerCallback);
+
+
   ros::spin();
   switch(finger_name){
-  case ff: 
+  case "ff":
+    // ff est l'index  a attache au 9 
+     ros::Publisher servo_pub = n.advertise<std_msgs/UInt16>("servo");
+  default:
+    break;
 
 }
   return 0;
